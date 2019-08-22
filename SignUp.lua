@@ -54,38 +54,46 @@ function scene:create( event )
 	sceneGroup:insert(backImage)
 	backImage:addEventListener("tap", home)
 	
-	local username = native.newTextField(160,200,180,30)
+	local username = native.newTextField(160,160,180,30)
 	username.placeholder = "Username"
 	sceneGroup:insert(username)
 	
-	local pw = native.newTextField(160,240,180,30)
+	local pw = native.newTextField(160,200,180,30)
 	pw.placeholder = "password"
 	sceneGroup:insert(pw)
 	
-	local number = native.newTextField(160,280,180,30)
-	number.placeholder = "number"
-	sceneGroup:insert(number)
+	local gender = native.newTextField(160,240,180,30)
+	gender.placeholder = "gender"
+	sceneGroup:insert(gender)
+	
+	local age = native.newTextField(160,280,180,30)
+	age.placeholder = "age"
+	sceneGroup:insert(age)
 	
 	local email = native.newTextField(160,320,180,30)
 	email.placeholder = "email"
 	sceneGroup:insert(email)
 	
+	local postcode = native.newTextField(160,360,180,30)
+	postcode.placeholder = "postcode"
+	sceneGroup:insert(postcode)
+	
 	--login = display.newText("Log in ",display.contentCenterX,display.contentCenterY*1.50, "Comic Sans MS", 25)
 	--sceneGroup:insert(login)
 	
-	local Login = widget.newButton(
+	local SignUp = widget.newButton(
     {
         shape = "roundedRect",
         left = 70,
-        top = 360,
-        id = "Login",
-        label = "Login",
-        onEvent = userLogin,
+        top = 390,
+        id = "SignUp",
+        label = "SignUp",
+        onEvent = userSignUp,
         fillColor = { default={ 0, 1, 4, 0.7 }, over={ 1, 0.5, 0.8, 4 } },
         labelColor = { default={ 2, 4, 1.5 }, over={ 2, 5, 1.5, 2.2 } }
     }
 )
-sceneGroup:insert(Login)
+sceneGroup:insert(SignUp)
 ----local json = require("json")
 	--login:addEventListener("tap", newscene)
 	
