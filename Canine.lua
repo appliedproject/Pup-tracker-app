@@ -170,6 +170,7 @@ function scene:hide( event )
         -- Code here runs when the scene is on screen (but is about to go off screen)
  
     elseif ( phase == "did" ) then
+	  composer.removeScene("Canine")
         -- Code here runs immediately after the scene goes entirely off screen
  
     end
