@@ -6,82 +6,83 @@
 
 local composer = require( "composer" )
 local scene = composer.newScene()
-
-
-local widget = require( "widget" )
  
 
 
+--Adding Welcome message
+--local function header()
+--display.newText("Welcome",display.contentCenterX,display.contentCenterY, "Comic Sans MS", 50)
+--end
+--header()
+
+local Welcome
+
+local widget = require ("widget")
+ 
 -- -----------------------------------------------------------------------------------
 -- Code outside of the scene event functions below will only be executed ONCE unless
 -- the scene is removed entirely (not recycled) via "composer.removeScene()"
 -- -----------------------------------------------------------------------------------
- local Welcome
-
-local widget = require ("widget")
  
- local function home ()	
-	composer.gotoScene("home",{effect = "slideLeft", time = 500})
+
+
+
+ local function newscene()
+ composer.gotoScene("SignUp",{effect = "slideLeft", time = 500})
 end
 
- 
- 
 -- -----------------------------------------------------------------------------------
 -- Scene event functions
 -- -----------------------------------------------------------------------------------
  
-
---input listener
-
 -- create()
 function scene:create( event )
-	
+ 
     local sceneGroup = self.view
 	
-	display.setDefault( "background", 0, 0, 1 )
 	--adding background
-	background = display.newImage( "Puppy1.png", display.contentCenterX, display.contentCenterY*1.6 )
-	sceneGroup:insert(background)
-	
-	
-	--Adding Welcome Message
-	Welcome = display.newText("Welcome",display.contentCenterX,display.contentCenterY*0.60, "Comic Sans MS", 30)
-	sceneGroup:insert(Welcome)
-	
-	
+	bg=display.newRect(display.contentCenterX,display.contentCenterY,display.contentWidth,display.contentHeight*1.20)
+	bg:setFillColor( 0,0,1)
+	sceneGroup:insert(bg)
 	
 	--Adding Welcome Message
-	Welcome = display.newText("Pup App",display.contentCenterX,display.contentCenterY*1.9, "Comic Sans MS", 30)
+	Welcome = display.newText("Overall Tracker",display.contentCenterX,display.contentCenterY*0.40, "Comic Sans MS", 40)
 	sceneGroup:insert(Welcome)
 	--Writing Message "About"
-	
-	
-	local username = native.newTextField(160,200,180,30)
-	username.placeholder = "Username"
-	sceneGroup:insert(username)
-	username:removeSelf()
-
-
-	
-	local pw = native.newTextField(160,240,180,30)
-	pw.placeholder = "password"
-	sceneGroup:insert(pw)
+     
+-- Slider listener
+local function sliderListener( event )
+    print( "Slider at ",value, "%" )
+end
  
- local Login = widget.newButton(
+-- Create the widget
+local slider = widget.newSlider(
     {
-        shape = "roundedRect",
-        left = 70,
-        top = 280,
-        id = "Login",
-        label = "Login",
-        onEvent = userLogin,
-        fillColor = { default={ 0, 1, 4, 0.7 }, over={ 1, 0.5, 0.8, 4 } },
-        labelColor = { default={ 2, 4, 1.5 }, over={ 2, 5, 1.5, 2.2 } }
+        x = display.contentCenterX*0.30,
+        y = display.contentCenterY,
+        orientation = "vertical",
+        height = 200,
+        value = 10,  -- Start slider at 10% (optional)
+        listener = sliderListener,
     }
 )
-sceneGroup:insert(Login)
-end
+sceneGroup:insert(slider)
+slider: addEventListener("touch", sliderListener)	
+	
+	--HomePage = display.newText("HomePage",display.contentCenterX*0.90,display.contentCenterY*2.0, "Comic Sans MS", 25)
+	--sceneGroup:insert(HomePage)
+	--HomePage:addEventListener("tap", newscene)
 
+
+	
+
+	--Adding Timer in this app which display how long a user is seing the app
+	
+	--sceneGroup:insert(Timer)
+	
+ 
+end
+ 
  
 -- show()
 function scene:show( event )
@@ -134,8 +135,3 @@ scene:addEventListener( "destroy", scene )
 -- -----------------------------------------------------------------------------------
  
 return scene
-
-
-
-
-
