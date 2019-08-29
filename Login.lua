@@ -59,7 +59,7 @@ function scene:create( event )
 	local username = native.newTextField(160,200,180,30)
 	username.placeholder = "Username"
 	sceneGroup:insert(username)
-	username:removeSelf()
+	
 
 
 	
